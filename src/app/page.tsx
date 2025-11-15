@@ -1,103 +1,154 @@
-import Image from "next/image";
+import { Cards } from "@/components/Cards";
+import { OptionCards } from "@/components/OptionCards";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { BsBuildingCheck, BsBuildingFillCheck } from "react-icons/bs";
+import { FaBriefcase, FaUserCheck } from "react-icons/fa";
+import { FiUserCheck } from "react-icons/fi";
+import { HiMiniDocumentCheck } from "react-icons/hi2";
+import { IoIosTimer } from "react-icons/io";
+import { IoAlertCircleOutline, IoShieldCheckmark } from "react-icons/io5";
+import { PiBuildingsBold } from "react-icons/pi";
+
+const ACCOUNT_TYPES = [
+  {
+    icon: PiBuildingsBold,
+    type: "Company",
+    description: <h1>Post jobs and find top talent for your <br/> organization</h1>,
+    list: ["Post unlimited job listings", "Access to candidate database", "Advanced filtering and search", "Company branding tools", "Analytics and reporting"],
+    route:'/account/create-company'
+  },
+  {
+    icon: FaUserCheck,
+    type: "Recruiter",
+    description: <h1>Connect companies with qualified <br/> professionals</h1>,
+    list: ["Manage multiple clients", "Commission tracking", "Candidate pipeline management", "Direct employer connections", "Performance metrics"],
+    route:'/account/create-recruiter'
+  },
+  {
+    icon: FaBriefcase,
+    type: "Professional",
+    description: <h1>Discover opportunities and advance your <br/> career</h1>,
+    list: ["Create professional profile", "Job recommendations", "Application tracking", "Skills assessment tools", "Career resources and tips"],
+    route:'/account/create-professional'
+  }
+]
+
+const WHY_CHOOSE_US = [
+  {
+    icon: IoShieldCheckmark,
+    iconColor: "green",
+    title: "Company Verification System",
+    content: "Every company undergoes rigorous verification with legal documentation, business registration, and identity validation."
+  },
+  {
+    icon: HiMiniDocumentCheck,
+    iconColor: "blue",
+    title: "Document Authentication",
+    content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa."
+  },
+  {
+    icon: IoAlertCircleOutline,
+    iconColor: "red",
+    title: "Fake Job Detection",
+    content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur"
+  },
+  {
+    icon: FiUserCheck,
+    iconColor: "green",
+    title: "Verified Profiles",
+    content: "Trust badges and verification scores help you identify authentic companies and legitimate opportunities instantly."
+  },
+  {
+    icon: BsBuildingCheck,
+    iconColor: "blue",
+    title: "Company Transparency",
+    content: "Access detailed company information, verification history, and authentic employee reviews before applying."
+  },
+  {
+    icon: IoIosTimer,
+    iconColor: "green",
+    title: "Real-time Monitoring",
+    content: "Continuous monitoring of job postings and company profiles to maintain platform integrity and user safety."
+  },
+]
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <>
+      {/* Hero Section */}
+      <div
+        className="h-[600px] w-full bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/bg-2.jpg')" }}
+      >
+        <div className="absolute right-10 top-2">
+          <Link href={'/account/sign-in'}>
+            <Button className="px-5 text-lg py-5 cursor-pointer bg-white text-black hover:text-white">
+              Sign In
+            </Button>
+          </Link>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        <div className="flex items-center justify-center h-full bg-black/70">
+          <div className="flex flex-col gap-y-4 text-center">
+            <div>
+              <h1 className="text-3xl md:text-5xl font-bold text-white">
+                Find Your Perfect Career
+              </h1>
+              <h1 className="text-3xl md:text-5xl font-bold text-white">
+                Match
+              </h1>
+            </div>
+            <div>
+              <p className="text-white text-lg pt-2">
+                Whether you're hiring talent, recruiting professionals, or seeking your next
+              </p>
+              <p className="text-white text-lg pt-2">
+                opportunity—we connect the right people with the right roles.
+              </p>
+            </div>
+
+            <Button
+              variant="outline"
+              className="self-center mt-10 text-lg font-semibold hover:bg-black/65 hover:text-white py-8"
+            >
+              Get Started Today
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      {/* Account Type Section */}
+      <div className="mt-16">
+        <h1 className="text-center text-4xl font-semibold">
+          Choose Your Account Type
+        </h1>
+        <p className="text-center py-5 text-black/50 font-medium">
+          Select the option that best fits your needs and start your journey with us
+        </p>
+
+        {/* Centered Grid */}
+        <div className="flex justify-center mt-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl w-full px-5 md:px-3 lg:px-0">
+            {ACCOUNT_TYPES.map((item, index) => {
+              return <OptionCards key={index} icon={item.icon} list={item.list} description={item.description} title={item.type} routes={item.route}/>
+            })}
+          </div>
+        </div>
+
+        {/* Why choose Us */}
+        <div className="flex flex-col justify-center mt-24 mb-16">
+          <h1 className="text-center text-4xl font-semibold">Why choose Us?</h1>
+          <p className="text-center py-5 text-black/50 font-medium">
+            Everything you need to succeed in your career journey
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-4 gap-6 mt-10 w-full">
+            {WHY_CHOOSE_US.map((item, index) => {
+              return <Cards key={index} title={item.title} content={item.content} icon={item.icon} iconColor={item.iconColor}/>
+            })}
+          </div>
+        </div>
+      </div>
+    </>
   );
 }

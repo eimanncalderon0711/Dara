@@ -22,12 +22,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-muted`}
       >
-        {children}
+        <main className="h-full">
+          {children}
+        </main>
+        <footer className="block h-20 bottom-0">
+          <div className="bg-black h-full flex items-center justify-center">
+            <h1 className="text-white">© 2025 Dara. All rights reserved.</h1>
+          </div>
+        </footer>
       </body>
     </html>
   );
