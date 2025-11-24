@@ -173,7 +173,7 @@ function Dashboard() {
         {/* Main Content */}
         <div className='p-6 max-w-7xl mx-auto'>
           {/* Welcome Banner */}
-          <div className="bg-gradient-to-r from-blue-600 to-purple-700 rounded-2xl p-6 text-white mb-8">
+          <div className="bg-linear-to-r from-blue-600 to-purple-700 rounded-2xl p-6 text-white mb-8">
             <div className="flex justify-between items-center">
               <div>
                 <h1 className="text-2xl font-bold mb-2">
