@@ -1,4 +1,4 @@
-import { Calendar, Home, Inbox, MessagesSquare, Search, Settings, Star } from "lucide-react"
+import { Calendar, Home, Inbox, MessagesSquare, Search, Settings, Star, LogOut } from "lucide-react"
 
 import {
   Sidebar,
@@ -9,6 +9,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarFooter,
 } from "@/components/ui/sidebar"
 import { IoLogoCodepen } from "react-icons/io"
 import { Separator } from "@/components/ui/separator"
@@ -43,7 +44,6 @@ const companyMenu = [
     icon: Settings,
   },
 ]
-
 
 const recruiterMenu = [
   {
@@ -84,7 +84,8 @@ const recruiterMenu = [
 ]
 
 export function AppSidebar() {
-  const ROLE: string = "recruiter";
+  const ROLE: string = "company";
+
   let items:{title:string, url:string, icon:IconType}[] = [];
 
   if(ROLE === "company"){
@@ -94,6 +95,18 @@ export function AppSidebar() {
   if(ROLE === "recruiter"){
     items = recruiterMenu;
   }
+
+  const handleLogout = () => {
+    if (window.confirm('Are you sure you want to logout?')) {
+      // Clear localStorage
+      localStorage.removeItem('companyProfile');
+      localStorage.removeItem('companySettings');
+      localStorage.removeItem('companyJobs');
+      
+      // Redirect to login page
+      window.location.href = '/login';
+    }
+  };
 
   return (
     <Sidebar>
@@ -122,6 +135,21 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+
+      {/* Logout Button in Footer */}
+      <SidebarFooter>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton 
+              onClick={handleLogout}
+              className="text-red-600 hover:text-red-700 hover:bg-red-50 cursor-pointer"
+            >
+              <LogOut className="w-4 h-4" />
+              <span>Logout</span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
   )
 }
